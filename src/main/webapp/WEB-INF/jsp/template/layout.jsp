@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Canvas Dashboard</title>
-<%-- 	<!-- jquery : bootstrap, datepicker -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
 	
 	<!-- bootstrap -->
@@ -17,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 <body>
-	<div id="wrap">
-		<header class="p-4">
+	<div id="wrap d-flex">
+		<nav class="p-2">
 			<jsp:include page="../include/gnb.jsp"/>
-		</header>
-		<section class="content">
+		</nav>
+		<article class="content">
 			<jsp:include page="../${viewName}.jsp"/>
-		</section>
+		</article>
 	</div>
 </body>
-</html> --%>
+</html>
