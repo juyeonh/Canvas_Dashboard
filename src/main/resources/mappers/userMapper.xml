@@ -26,5 +26,13 @@
         AND
         	`password` = #{password}
     </select>
-
+	
+	<update id="updateUserStatusById" parameterType="int">
+ 		UPDATE `user`
+ 		SET
+ 			`status` = 1
+ 			,`updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
 </mapper>

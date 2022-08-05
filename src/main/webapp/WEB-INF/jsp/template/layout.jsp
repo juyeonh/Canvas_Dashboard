@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +19,20 @@
 </head>
 <body>
 	<div class="d-flex">
-		<nav style="width:6%;">
+		<c:if test="${not empty userId && userType ne 'administrator'}">
+			<nav style="width:6%;">
+				<jsp:include page="../include/gnb.jsp"/>
+			</nav>
+			<article class="content" style="width:94%">
+				<jsp:include page="../${viewName}.jsp"/>
+			</article>
+		</c:if>
+		<c:if test="${empty userId || userType eq 'administrator'}">
 			<jsp:include page="../include/gnb.jsp"/>
-		</nav>
-		<article class="content" style="width:94%">
-			<jsp:include page="../${viewName}.jsp"/>
-		</article>
+			<article class="content" style="width:100%">
+				<jsp:include page="../${viewName}.jsp"/>
+			</article>
+		</c:if>
 	</div>
 </body>
 </html>

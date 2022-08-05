@@ -19,4 +19,11 @@ public class UserController {
 		model.addAttribute("viewName", "user/login");
 		return "template/layout";
 	}
+	
+	// http://localhost/user/add_user_view
+	@RequestMapping("add_user_view")
+	public String addUserView(Model model, HttpSession session) {
+		model.addAttribute("viewName", "user/addUserView");
+		return "template/layout";
+	}
 }

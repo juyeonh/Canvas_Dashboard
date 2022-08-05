@@ -11,5 +11,7 @@ public interface UserDAO {
 	public User selectUserByComputingId(
 			@Param("computingId") String computingId, 
 			@Param("password") String password);
+
+	public void updateUserStatusById(int id);
 	
 }

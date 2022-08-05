@@ -16,13 +16,18 @@ public class BoardController {
 	// http://localhost/board/board_view
 	@RequestMapping("/board_view")
 	public String boardView(Model model, HttpSession session) {
-//		Object userId = session.getAttribute("userId");
-//		model.addAttribute("userId", userId);
-//		
+		model.addAttribute("viewName", "board/board");
+		
+		Object userType = session.getAttribute("userType");
+		if(userType != null) {
+			if(userType.equals("administrator")) {
+				model.addAttribute("viewName", "board/admin");
+			}
+		}
+		
 //		List<CardView> cardList = boardBO.generateCardList((Integer) userId);
 //		model.addAttribute("cardList", cardList);
 		
-		model.addAttribute("viewName", "board/board");
 		return "template/layout";
 	}
 	
