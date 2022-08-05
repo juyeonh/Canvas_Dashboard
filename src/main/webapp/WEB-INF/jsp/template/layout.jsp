@@ -16,11 +16,11 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 <body>
-	<div id="wrap d-flex">
-		<nav class="p-2">
+	<div class="d-flex" id="wrap">
+		<nav style="width:6%;">
 			<jsp:include page="../include/gnb.jsp"/>
 		</nav>
-		<article class="content">
+		<article class="content" style="width:94%">
 			<jsp:include page="../${viewName}.jsp"/>
 		</article>
 	</div>

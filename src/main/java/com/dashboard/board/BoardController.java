@@ -19,7 +19,7 @@ public class BoardController {
 //		Object userId = session.getAttribute("userId");
 //		model.addAttribute("userId", userId);
 //		
-//		List<CardView> cardList = timelineBO.generateCardList((Integer) userId);	// CardView = Post + Comment + User + Like
+//		List<CardView> cardList = boardBO.generateCardList((Integer) userId);
 //		model.addAttribute("cardList", cardList);
 		
 		model.addAttribute("viewName", "board/board");
