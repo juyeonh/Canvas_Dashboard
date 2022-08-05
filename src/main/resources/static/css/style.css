@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.shadow-box {width:550px; background-color:#F4FCFD; margin-top:200px; box-shadow:5px 5px 5px 5px #BDC0C0;}
+
+
 nav .block{
 	height: 80px;
 	color:white;

@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 <body>
-	<div class="d-flex" id="wrap">
+	<div class="d-flex">
 		<nav style="width:6%;">
 			<jsp:include page="../include/gnb.jsp"/>
 		</nav>

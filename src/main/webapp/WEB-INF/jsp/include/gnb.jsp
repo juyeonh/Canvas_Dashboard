@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div style="background-color: #354c65;">
+<div style="background-color: #354c65;height:100vh;">
 	<div class="d-flex justify-content-center align-items-center flex-column">
 		<a href="/board/board_view">
 			<img src="/static/img/canvas.png" class="m-3" width="50px;">
