@@ -61,5 +61,7 @@ nav .block{
   padding: 16px;
 }
 
-.sign-up-box {width:650px; background-color:#F4FCFD; margin-top:80px;}
-.add-user-subject {margin:20px; font-weight:bold;}
+.user-reg-box {width:500px; background-color:#c0edfd; margin-top:80px;}
+.user-reg-subject {font-weight:bold;}
+
+.dep-box {width:700px;}

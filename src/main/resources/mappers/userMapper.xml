@@ -35,4 +35,29 @@
  		WHERE
  			`id` = #{id}
  	</update>
+ 	
+ 	<insert id="insertUser" parameterType="map">
+    	INSERT INTO `user`
+		(
+			`computingId`
+			, `password`
+			, `name`
+			, `email`
+			, `type`
+			, `status`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{computingId}
+			, #{password}
+			, #{name}
+			, #{email}
+			, #{type}
+			, #{status}
+			, NOW()
+			, NOW()
+		)
+    </insert>
 </mapper>

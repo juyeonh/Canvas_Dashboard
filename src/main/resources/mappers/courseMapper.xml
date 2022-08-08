@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.dashboard.course.dao.CourseDAO">
+
+    <insert id="insertDepartment" parameterType="String">
+    	INSERT INTO `department`
+		(
+			`name`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, NOW()
+			, NOW()
+		)
+    </insert>
+    
+    <insert id="insertCourse" parameterType="map">
+    	INSERT INTO `course`
+		(
+			`name`
+			, `departmentId`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, #{departmentId}
+			, NOW()
+			, NOW()
+		)
+    </insert>
+    
+    <insert id="insertPrerequisite" parameterType="map">
+    	INSERT INTO `prerequisite`
+		(
+			`courseId`
+			, `reqCourseId`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{courseId}
+			, #{reqCourseId}
+			, NOW()
+			, NOW()
+		)
+    </insert>
+    
+    <select id="selectDepartmentList" resultType="com.dashboard.course.model.Department">
+    	SELECT
+            `id`
+            , `name`
+            , `createdAt`
+            , `updatedAt`
+        FROM
+            `department`
+    </select>
+    
+    <select id="checkDuplicateCourse" parameterType="string" resultType="boolean">
+    	SELECT
+            COUNT(*)
+        FROM
+            `course`
+        WHERE
+        	`name` = #{name}
+    </select>
+    
+    <select id="selectCourseListByDepartmentId" parameterType="int" resultType="com.dashboard.course.model.Course">
+    	SELECT
+            `id`
+            , `name`
+            , `departmentId`
+            , `createdAt`
+            , `updatedAt`
+        FROM
+            `course`
+        WHERE
+        	`departmentId` = #{departmentId}
+    </select>
+    
+</mapper>

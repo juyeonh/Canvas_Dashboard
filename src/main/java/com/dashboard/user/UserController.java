@@ -21,7 +21,7 @@ public class UserController {
 	}
 	
 	// http://localhost/user/add_user_view
-	@RequestMapping("add_user_view")
+	@RequestMapping("/add_user_view")
 	public String addUserView(Model model, HttpSession session) {
 		model.addAttribute("viewName", "user/addUserView");
 		return "template/layout";

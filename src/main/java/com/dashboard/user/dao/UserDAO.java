@@ -14,4 +14,11 @@ public interface UserDAO {
 
 	public void updateUserStatusById(int id);
 	
+	public void insertUser(
+			@Param("computingId") String computingId, 
+			@Param("password") String password, 
+			@Param("name") String name, 
+			@Param("email") String email, 
+			@Param("type") String type, 
+			@Param("status") int status);
 }

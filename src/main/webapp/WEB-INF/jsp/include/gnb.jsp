@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${userType ne 'administrator'}">
+<c:if test="${not empty userId && userType ne 'Administrator'}">
 <div style="background-color: #354c65;height:100vh;">
 	<div class="d-flex justify-content-center align-items-center flex-column">
 		<a href="/board/board_view">
@@ -28,15 +28,13 @@
 </div>
 </c:if>
 
-<c:if test="${userType eq 'administrator'}">
+<c:if test="${userType eq 'Administrator'}">
 <!-- reference: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp -->
 <div id="sidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/add_user_view">User</a>
-  <a href="#">Departments/Courses</a>
-  <a href="#">Courses</a>
+  <a href="/course/add_course_view">Departments/Courses</a>
   <a href="#">Term Courses</a>
-  <a href="#">Requirements</a>
 </div>
 
 <div id="main">

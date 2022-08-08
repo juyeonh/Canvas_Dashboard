@@ -41,7 +41,7 @@ public class UserRestController {
 			session.setAttribute("profileImagePath", user.getProfileImagePath());
 			
 			if(user.getStatus() == 0) {	// admin에서 만들어진 후 한 번도 인증되지 않은 계정이면 등록
-				userBO.registerUserById(user.getId());
+				userBO.updateUserStatusById(user.getId());
 			}
 			
 			result.put("result", "success");
@@ -52,31 +52,19 @@ public class UserRestController {
 		return result;
 	}
 	
-	@RequestMapping("/add_user")
-	public Map<String,Object> addUser(
+	@RequestMapping("/register_user")
+	public Map<String,Object> registerUser(
 			@RequestParam("computingId") String computingId,
-			@RequestParam("password") String password,
+			@RequestParam("name") String name,
+			@RequestParam("email") String email,
+			@RequestParam("type") String type,
 			HttpServletRequest req,
 			Model model){
-		String encryptedPassword = EncryptUtils.md5(password);
-		User user = userBO.getUserByComputingId(computingId,encryptedPassword);
+		String encryptedPassword = EncryptUtils.md5("0000");	// The default pw of new user would be 0000. User should be told to change the pw later on.
+		userBO.addUser(computingId,encryptedPassword,name,email,type,0);
 		
 		Map<String,Object> result = new HashMap<>();
-		if(user != null) {
-			HttpSession session = req.getSession();
-			session.setAttribute("userId", user.getId());
-			session.setAttribute("userComputingId", user.getComputingId());
-			session.setAttribute("userType", user.getType());
-			session.setAttribute("profileImagePath", user.getProfileImagePath());
-			
-			if(user.getStatus() == 0) {	// admin에서 만들어진 후 한 번도 인증되지 않은 계정이면 등록
-				userBO.registerUserById(user.getId());
-			}
-			
-			result.put("result", "success");
-		} else {
-			result.put("errorMessage", "존재하지 않는 사용자입니다.");
-		}
+		result.put("result", "success");
 		
 		return result;
 	}

@@ -16,8 +16,12 @@ public class UserBO {
 		return userDAO.selectUserByComputingId(computingId, password);
 	}
 
-	public void registerUserById(int id) {		// set status to 1 (meaning that it's registered user)
+	public void updateUserStatusById(int id) {		// set status to 1 (meaning that it's registered user)
 		userDAO.updateUserStatusById(id);
+	}
+
+	public void addUser(String computingId, String password, String name, String email, String type, int status) {
+		userDAO.insertUser(computingId, password, name, email, type, status);
 	}
 
 }
