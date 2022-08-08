@@ -46,7 +46,7 @@ public class UserRestController {
 			
 			result.put("result", "success");
 		} else {
-			result.put("errorMessage", "존재하지 않는 사용자입니다.");
+			result.put("errorMessage", "Invalid credentials.");
 		}
 		
 		return result;

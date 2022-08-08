@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dashboard.course.bo.CourseBO;
 import com.dashboard.course.model.Course;
+import com.dashboard.course.model.CourseView;
 import com.dashboard.course.model.Department;
 
 @RequestMapping("/course")
@@ -25,15 +26,19 @@ public class CourseController {
 	@RequestMapping("/add_course_view")
 	public String addDepartmentView(Model model, HttpSession session) {
 		
-		List<Department> departmentList = courseBO.getDepartmentList();
-		model.addAttribute("departmentList", departmentList);
+		List<Department> depList = courseBO.getDepartmentList();
 		
-		for (Department dep : departmentList) {
-			List<Course> courseList = courseBO.getCourseListByDepartmentId(dep.getId());
-			model.addAttribute("courseList" + dep.getId(), courseList);
+		List<CourseView> courseViewList = new ArrayList<>();
+		for (int i = 0; i < depList.size(); i++) {
+			CourseView cv = new CourseView();
+			cv.setDep(depList.get(i));
+			List<Course> courseList = courseBO.getCourseListByDepartmentId(depList.get(i).getId());
+			cv.setCourseList(courseList);
+			courseViewList.add(cv);
 		}
 		
-		model.addAttribute("viewName", "course/add_course");
+		model.addAttribute("courseViewList",courseViewList);
+		model.addAttribute("viewName", "course/addCourse");
 		return "template/layout";
 	}
 	

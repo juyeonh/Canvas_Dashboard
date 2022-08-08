@@ -16,7 +16,7 @@ nav .block{
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #354c65;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -26,7 +26,7 @@ nav .block{
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: white;
   display: block;
   transition: 0.3s;
 }
@@ -46,7 +46,7 @@ nav .block{
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #111;
+  background-color: #354c65;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -65,3 +65,14 @@ nav .block{
 .user-reg-subject {font-weight:bold;}
 
 .dep-box {width:700px;}
+
+
+
+
+.nav-btn:hover {
+	background-color: #293c50;
+}
+.nav-btn:active, .nav-btn:focus {
+	background-color: white;
+	color:black;
+}

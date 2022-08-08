@@ -36,8 +36,8 @@
 				<div class="col-7" style="padding:0;">
 					<select name="departmentId" class="form-control">
 					    <option value="">Select a department</option>
-					    <c:forEach var="dep" items="${departmentList}">
-					    	<option value="${dep.id}">${dep.name}</option>
+					    <c:forEach var="cv" items="${courseViewList}">
+					    	<option value="${cv.dep.id}">${cv.dep.name}</option>
 					    </c:forEach>
 				    </select>
 			    </div>
@@ -66,14 +66,12 @@
 			  	<div class="col-7" style="padding:0;">
 			  		<select name="courseId" class="form-control">
 					    <option value="">Select a course</option>
-					    <c:forEach var="dep" items="${departmentList}">
-					    
-					    
-						    <%-- <optgroup label="${dep.name}">
-						    <c:forEach var="course" items="courseList${dep.id}">
-						    	<option value="${course.id}">${course.name}</option>
-						    </c:forEach>
-						    </optgroup> --%>
+					    <c:forEach var="cv" items="${courseViewList}">
+						    <optgroup label="${cv.dep.name}">
+							    <c:forEach var="course" items="${cv.courseList}">
+							    	<option value="${course.id}">${course.name}</option>
+							    </c:forEach>
+						    </optgroup>
 					    </c:forEach>
 				    </select>
 			    </div>
@@ -83,14 +81,12 @@
 			  	<div class="col-7" style="padding:0;">
 				  	<select name="reqCourseId" class="form-control">
 					    <option value="">Select a course</option>
-					    <c:forEach var="dep" items="${departmentList}">
-					    	
-					    	
-						    <%-- <optgroup label="${dep.name}">
-						    <c:forEach var="course" items="courseList${dep.id}">
-						    	<option value="${course.id}">${course.name}</option>
-						    </c:forEach>
-						    </optgroup> --%>
+					    <c:forEach var="cv" items="${courseViewList}">
+						    <optgroup label="${cv.dep.name}">
+							    <c:forEach var="course" items="${cv.courseList}">
+							    	<option value="${course.id}">${course.name}</option>
+							    </c:forEach>
+						    </optgroup>
 					    </c:forEach>
 				    </select>
 			    </div>

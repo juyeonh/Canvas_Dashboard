@@ -5,12 +5,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="d-flex">
-	<div class="col-9">
-		<h2 class="m-3">Dashboard</h2>
-		<hr>
+	<div class="ml-3" style="width: 900px;">	
+		<h2 class="m-3">Dashboard</h2><hr>
+		
 	</div>
-	<div class="col-3">
-		TO DO
+	<div class="mt-5 ml-5" style="width: 200px;">
+		<strong>TO DO</strong><hr>
 	</div>
 </div>
 
+<script>
+$(document).ready(function(){
+	
+});
+</script>

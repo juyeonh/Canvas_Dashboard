@@ -24,12 +24,19 @@
 <body>
 	<div class="d-flex">
 		<c:if test="${not empty userId && userType ne 'Administrator'}">
-			<nav style="width:6%;">
+			<nav>
+				<jsp:include page="../include/gnb.jsp"/>
+			</nav>
+			<article class="content">
+				<jsp:include page="../${viewName}.jsp"/>
+			</article>
+			
+			<%-- <nav style="width:6%;">
 				<jsp:include page="../include/gnb.jsp"/>
 			</nav>
 			<article class="content" style="width:94%">
 				<jsp:include page="../${viewName}.jsp"/>
-			</article>
+			</article> --%>
 		</c:if>
 		<c:if test="${empty userId || userType eq 'Administrator'}">
 			<jsp:include page="../include/gnb.jsp"/>
