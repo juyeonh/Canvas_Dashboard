@@ -12,33 +12,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dashboard.course.bo.CourseBO;
 import com.dashboard.course.model.Course;
-import com.dashboard.course.model.CourseView;
 import com.dashboard.course.model.Department;
+import com.dashboard.course.model.DepartmentView;
+import com.dashboard.user.bo.UserBO;
+import com.dashboard.user.model.User;
 
 @RequestMapping("/course")
 @Controller
 public class CourseController {
 	
 	@Autowired
+	private UserBO userBO;
+	
+	@Autowired
 	private CourseBO courseBO;
 
 	// http://localhost/course/add_course_view
 	@RequestMapping("/add_course_view")
-	public String addDepartmentView(Model model, HttpSession session) {
-		
+	public String addCourseView(Model model, HttpSession session) {
 		List<Department> depList = courseBO.getDepartmentList();
 		
-		List<CourseView> courseViewList = new ArrayList<>();
+		List<DepartmentView> depViewList = new ArrayList<>();
 		for (int i = 0; i < depList.size(); i++) {
-			CourseView cv = new CourseView();
-			cv.setDep(depList.get(i));
+			DepartmentView dv = new DepartmentView();
+			dv.setDep(depList.get(i));
 			List<Course> courseList = courseBO.getCourseListByDepartmentId(depList.get(i).getId());
-			cv.setCourseList(courseList);
-			courseViewList.add(cv);
+			dv.setCourseList(courseList);
+			depViewList.add(dv);
 		}
 		
-		model.addAttribute("courseViewList",courseViewList);
-		model.addAttribute("viewName", "course/addCourse");
+		model.addAttribute("depViewList",depViewList);
+		model.addAttribute("viewName", "admin/addCourse");
+		return "template/layout";
+	}
+	
+	// http://localhost/course/add_course_view
+	@RequestMapping("/add_term_course_view")
+	public String addTermCourseView(Model model, HttpSession session) {
+		List<Department> depList = courseBO.getDepartmentList();
+		
+		List<DepartmentView> depViewList = new ArrayList<>();
+		for (int i = 0; i < depList.size(); i++) {
+			DepartmentView dv = new DepartmentView();
+			dv.setDep(depList.get(i));
+			List<Course> courseList = courseBO.getCourseListByDepartmentId(depList.get(i).getId());
+			dv.setCourseList(courseList);
+			List<User> instructorList = userBO.getInstructorListById(depList.get(i).getId());
+			dv.setInstructorList(instructorList);
+			depViewList.add(dv);
+		}
+		
+		model.addAttribute("depViewList",depViewList);
+		model.addAttribute("viewName", "admin/addTermCourse");
 		return "template/layout";
 	}
 	

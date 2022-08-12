@@ -20,8 +20,8 @@ public class BoardController {
 		
 		Object userType = session.getAttribute("userType");
 		if(userType != null) {
-			if(userType.equals("administrator")) {
-				model.addAttribute("viewName", "board/admin");
+			if(userType.equals("Administrator")) {
+				model.addAttribute("viewName", "admin/addUser");
 			}
 		}
 		

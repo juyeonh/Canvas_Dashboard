@@ -2,13 +2,19 @@ package com.dashboard.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dashboard.course.bo.CourseBO;
+
 @RequestMapping("/user")
 @Controller
 public class UserController {
+	
+	@Autowired
+	private CourseBO courseBO;
 
 	// http://localhost/user/login_view
 	@RequestMapping("/login_view")
@@ -17,13 +23,6 @@ public class UserController {
 //		model.addAttribute("userId", userId);
 		
 		model.addAttribute("viewName", "user/login");
-		return "template/layout";
-	}
-	
-	// http://localhost/user/add_user_view
-	@RequestMapping("/add_user_view")
-	public String addUserView(Model model, HttpSession session) {
-		model.addAttribute("viewName", "user/addUserView");
 		return "template/layout";
 	}
 	
@@ -37,4 +36,13 @@ public class UserController {
 		
 		return "redirect:/user/login_view";
 	}
+	
+	// http://localhost/user/add_user_view
+	@RequestMapping("/add_user_view")
+	public String addUserView(Model model, HttpSession session) {
+		model.addAttribute("depList", courseBO.getDepartmentList());
+		model.addAttribute("viewName", "admin/addUser");
+		return "template/layout";
+	}
+	
 }

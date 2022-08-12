@@ -61,6 +61,7 @@
             , `updatedAt`
         FROM
             `department`
+        ORDER BY `name` DESC
     </select>
     
     <select id="checkDuplicateCourse" parameterType="string" resultType="boolean">
@@ -83,6 +84,81 @@
             `course`
         WHERE
         	`departmentId` = #{departmentId}
+        ORDER BY `name` DESC
     </select>
     
+    <insert id="insertStudentProgram" parameterType="map">
+    	INSERT INTO `program`
+		(
+			`stuUserId`
+			, `departmentId`
+			, `type`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{stuUserId}
+			, #{departmentId}
+			, #{type}
+			, NOW()
+			, NOW()
+		)
+    </insert>
+    
+    <insert id="insertInstructorProgram" parameterType="map">
+    	INSERT INTO `program`
+		(
+			`instUserId`
+			, `departmentId`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{instUserId}
+			, #{departmentId}
+			, NOW()
+			, NOW()
+		)
+    </insert>
+    
+    <select id="selectInstructorIdListByDepartmentId" parameterType="int" resultType="integer">
+    	SELECT
+            `instUserId`
+        FROM
+            `program`
+        WHERE
+        	`departmentId` = #{departmentId}
+        AND `instUserId` is not NULL
+    </select>
+    
+    <insert id="insertTermCourse" parameterType="map">
+    	INSERT INTO `term_course`
+		(
+			`courseId`
+			,`userId`
+			,`term`
+			,`capacity`
+			,`room`
+			,`units`
+			,`status`
+			,`enrolled`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{courseId}
+			,#{userId}
+			,#{term}
+			,#{capacity}
+			,#{room}
+			,#{units}
+			,#{status}
+			,#{enrolled}
+			,NOW()
+			,NOW()
+		)
+    </insert>
 </mapper>

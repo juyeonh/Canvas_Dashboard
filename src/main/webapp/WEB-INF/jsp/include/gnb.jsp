@@ -29,6 +29,9 @@
 	
 	<div id="sidebar" class="sidebar">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+	  <div id="img-wrapper" class="d-flex justify-content-center">
+	  	<img src="${profileImagePath}" width="150px"/>
+	  </div>
 	  <a href="#">Edit Profile</a>
 	  <a href="#">Enrollment</a>
 	  <div class="w-100 text-center">
@@ -40,11 +43,13 @@
 <script>
 function openNav() {
   document.getElementById("sidebar").style.width = "350px";
+  //document.getElementById("img-wrapper").style.width = "350px";
   document.getElementById("sidebar").style.marginLeft = "98px";
 }
 
 function closeNav() {
   document.getElementById("sidebar").style.width = "0";
+  //document.getElementById("img-wrapper").style.width = "0";
 }
 </script>
 </c:if>
@@ -55,7 +60,7 @@ function closeNav() {
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/add_user_view">User</a>
   <a href="/course/add_course_view">Departments/Courses</a>
-  <a href="#">Term Courses</a>
+  <a href="/course/add_term_course_view">Term Courses</a>
   <div class="w-100 text-center">
   	<button class="btn btn-dark m-5" onclick = "location.href='/user/sign_out'">Sign Out</button>
   </div>

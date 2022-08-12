@@ -4,7 +4,28 @@
  
 <mapper namespace="com.dashboard.user.dao.UserDAO">
 
-	<select id="selectUserByComputingId" parameterType="map" resultType="com.dashboard.user.model.User">
+	<select id="selectUserByComputingId" parameterType="string" resultType="com.dashboard.user.model.User">
+    	SELECT
+            `id`
+            , `computingId`
+            , `password`
+            , `name`
+			, `email`
+			, `birth`
+			, `profileImagePath`
+            , `bio`
+            , `contacts`
+            , `type`
+            , `status`
+            , `createdAt`
+            , `updatedAt`
+        FROM
+            `user`
+        WHERE
+        	`computingId` = #{computingId}
+    </select>
+
+	<select id="selectUserByComputingIdAndPassword" parameterType="map" resultType="com.dashboard.user.model.User">
     	SELECT
             `id`
             , `computingId`
@@ -45,6 +66,7 @@
 			, `email`
 			, `type`
 			, `status`
+			, `profileImagePath`
 			, `createdAt`
 			, `updatedAt`
 		)
@@ -56,8 +78,31 @@
 			, #{email}
 			, #{type}
 			, #{status}
+			, #{profileImagePath}
 			, NOW()
 			, NOW()
 		)
     </insert>
+    
+    <select id="selectUserById" parameterType="int" resultType="com.dashboard.user.model.User">
+    	SELECT
+            `id`
+            , `computingId`
+            , `password`
+            , `name`
+			, `email`
+			, `birth`
+			, `profileImagePath`
+            , `bio`
+            , `contacts`
+            , `type`
+            , `status`
+            , `createdAt`
+            , `updatedAt`
+        FROM
+            `user`
+        WHERE
+        	`id` = #{id}
+    </select>
+    
 </mapper>

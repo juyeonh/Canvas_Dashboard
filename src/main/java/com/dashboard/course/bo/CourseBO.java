@@ -38,4 +38,21 @@ public class CourseBO {
 	public List<Course> getCourseListByDepartmentId(int departmentId){
 		return courseDAO.selectCourseListByDepartmentId(departmentId);
 	}
+
+	public int addStudentProgram(Integer stuUserId, int departmentId, String type) {
+		return courseDAO.insertStudentProgram(stuUserId, departmentId, type);
+	}
+	
+	public int addInstructorProgram(Integer instUserId, int departmentId) {
+		return courseDAO.insertInstructorProgram(instUserId, departmentId);
+	}
+	
+	public List<Integer> getInstructorIdListByDepartmentId(int departmentId){
+		return courseDAO.selectInstructorIdListByDepartmentId(departmentId);
+	}
+
+	public int addTermCourse(int courseId, int userId, String term, int capacity, String room, int units,
+			String status, int enrolled) {
+		return courseDAO.insertTermCourse(courseId, userId, term, capacity, room, units, status, enrolled);
+	}
 }

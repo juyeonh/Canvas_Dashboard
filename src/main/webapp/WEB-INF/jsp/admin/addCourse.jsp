@@ -4,13 +4,13 @@
     
 <h1 class="m-3">New Department / New Course / Add Requirements</h1>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-5">
 	<div class="dep-box mt-3">
 		<!-- Add new department -->
-		<a data-toggle="collapse" href="#collapseDepartment" role="button" aria-expanded="false" aria-controls="collapseExample">
+		<a data-toggle="collapse" href="#collapseDepartment" role="button" aria-expanded="true" aria-controls="collapseDepartment">
 		    <strong style="color:blue; font-size: x-large;">· New Department</strong>
 		</a>
-		<div class="collapse" id="collapseDepartment">
+		<div class="collapse show" id="collapseDepartment">
 		  <div class="card card-body">
 		  <form id="departmentForm" method="post" action="/course/add_department">
 		    <div class="d-flex align-items-center">
@@ -25,10 +25,10 @@
 		</div><br>
 		
 		<!-- Add new course & its department-->
-		<a data-toggle="collapse" href="#collapseCourse" role="button" aria-expanded="false" aria-controls="collapseExample">
+		<a data-toggle="collapse" href="#collapseCourse" role="button" aria-expanded="true" aria-controls="collapseCourse">
 		    <strong style="color:blue; font-size: x-large;">· New Course</strong>
 		</a>
-		<div class="collapse" id="collapseCourse">
+		<div class="collapse show" id="collapseCourse">
 		  <div class="card card-body">
 		  <form id="courseForm" method="post" action="/course/add_course">
 			<div class="d-flex align-items-center">
@@ -36,8 +36,8 @@
 				<div class="col-7" style="padding:0;">
 					<select name="departmentId" class="form-control">
 					    <option value="">Select a department</option>
-					    <c:forEach var="cv" items="${courseViewList}">
-					    	<option value="${cv.dep.id}">${cv.dep.name}</option>
+					    <c:forEach var="dv" items="${depViewList}">
+					    	<option value="${dv.dep.id}">${dv.dep.name}</option>
 					    </c:forEach>
 				    </select>
 			    </div>
@@ -55,10 +55,10 @@
 		</div><br>
 		
 		<!-- Add Requirements for each course -->
-		<a data-toggle="collapse" href="#collapseRequirements" role="button" aria-expanded="false" aria-controls="collapseExample">
+		<a data-toggle="collapse" href="#collapseRequirements" role="button" aria-expanded="true" aria-controls="collapseRequirements">
 		    <strong style="color:blue; font-size: x-large;">· Add Prerequisites</strong>
 		</a>
-		<div class="collapse" id="collapseRequirements">
+		<div class="collapse show" id="collapseRequirements">
 		  <div class="card card-body">
 		  	<form id="prereqForm" method="post" action="/course/add_prerequisite">
 		  	<div class="d-flex align-items-center mt-1">
@@ -66,9 +66,9 @@
 			  	<div class="col-7" style="padding:0;">
 			  		<select name="courseId" class="form-control">
 					    <option value="">Select a course</option>
-					    <c:forEach var="cv" items="${courseViewList}">
-						    <optgroup label="${cv.dep.name}">
-							    <c:forEach var="course" items="${cv.courseList}">
+					    <c:forEach var="dv" items="${depViewList}">
+						    <optgroup label="${dv.dep.name}">
+							    <c:forEach var="course" items="${dv.courseList}">
 							    	<option value="${course.id}">${course.name}</option>
 							    </c:forEach>
 						    </optgroup>
@@ -81,9 +81,9 @@
 			  	<div class="col-7" style="padding:0;">
 				  	<select name="reqCourseId" class="form-control">
 					    <option value="">Select a course</option>
-					    <c:forEach var="cv" items="${courseViewList}">
-						    <optgroup label="${cv.dep.name}">
-							    <c:forEach var="course" items="${cv.courseList}">
+					    <c:forEach var="dv" items="${depViewList}">
+						    <optgroup label="${dv.dep.name}">
+							    <c:forEach var="course" items="${dv.courseList}">
 							    	<option value="${course.id}">${course.name}</option>
 							    </c:forEach>
 						    </optgroup>
@@ -98,8 +98,6 @@
 		  </form>
 		  </div>
 		</div>
-			
-		
 	</div>
 </div>
 
@@ -128,7 +126,7 @@ $(document).ready(function(){
 				alert("Department successfully added.");
 				location.reload();
 			} else {
-				alert("User registration failed. Please try it again.");
+				alert("Adding department failed. Please try it again.");
 			}
 		});
 	});
@@ -160,7 +158,7 @@ $(document).ready(function(){
 			} else if(data.result == "duplicate"){
 				alert("The course already exists.");
 			} else {
-				alert("User registration failed. Please try it again.");
+				alert("Adding course failed. Please try it again.");
 			}
 		});
 	});
@@ -190,7 +188,7 @@ $(document).ready(function(){
 				alert("Prerequisite successfully added.");
 				location.reload();
 			} else {
-				alert("User registration failed. Please try it again.");
+				alert("Adding prerequisite failed. Please try it again.");
 			}
 		});
 	});
