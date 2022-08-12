@@ -47,6 +47,10 @@ public class CourseBO {
 		return courseDAO.insertInstructorProgram(instUserId, departmentId);
 	}
 	
+	public int getDepartmentIdByCourseId(int id) {
+		return courseDAO.selectDepartmentIdByCourseId(id);
+	}
+	
 	public List<Integer> getInstructorIdListByDepartmentId(int departmentId){
 		return courseDAO.selectInstructorIdListByDepartmentId(departmentId);
 	}

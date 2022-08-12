@@ -57,7 +57,7 @@ public class CourseController {
 			dv.setDep(depList.get(i));
 			List<Course> courseList = courseBO.getCourseListByDepartmentId(depList.get(i).getId());
 			dv.setCourseList(courseList);
-			List<User> instructorList = userBO.getInstructorListById(depList.get(i).getId());
+			List<User> instructorList = userBO.getInstructorListByDepartmentId(depList.get(i).getId());
 			dv.setInstructorList(instructorList);
 			depViewList.add(dv);
 		}

@@ -39,7 +39,7 @@ public class UserBO {
 		return userDAO.insertUser(computingId, password, name, email, type, status, profileImagePath);
 	}
 	
-	public List<User> getInstructorListById(int depId) {
+	public List<User> getInstructorListByDepartmentId(int depId) {
 		List<Integer> instIdList = courseBO.getInstructorIdListByDepartmentId(depId);
 		List<User> instList = new ArrayList<>();
 		for (int i = 0; i < instIdList.size(); i++) {

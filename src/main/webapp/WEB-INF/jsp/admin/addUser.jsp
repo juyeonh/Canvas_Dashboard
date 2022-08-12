@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1 class="m-3">User & Program</h1>
+<h1 class="m-3">New User & Program</h1>
 
 <div class="d-flex justify-content-center">
 	<div class="dep-box mt-3">

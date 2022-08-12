@@ -37,6 +37,8 @@ public interface CourseDAO {
 			@Param("instUserId") Integer instUserId, 
 			@Param("departmentId") int departmentId);
 
+	public int selectDepartmentIdByCourseId(int id);
+
 	public List<Integer> selectInstructorIdListByDepartmentId(int departmentId);
 	
 	public int insertTermCourse(
@@ -48,4 +50,5 @@ public interface CourseDAO {
 			@Param("units") int units,
 			@Param("status") String status, 
 			@Param("enrolled") int enrolled);
+
 }

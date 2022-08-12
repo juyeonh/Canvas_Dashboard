@@ -1,11 +1,14 @@
 package com.dashboard.course;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -107,6 +110,19 @@ public class CourseRestController {
 		if(courseBO.addTermCourse(courseId,instructorId,term,capacity,room,units,status,0) < 1) {
 			result.put("result", "fail");
 		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/get_instructors")
+	public Map<String,Object> getInstructors(
+			@RequestParam("courseId") int courseId){
+		Map<String,Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		int depId = courseBO.getDepartmentIdByCourseId(courseId);
+		List<User> instructorList = userBO.getInstructorListByDepartmentId(depId);
+		result.put("data", instructorList);
 		
 		return result;
 	}

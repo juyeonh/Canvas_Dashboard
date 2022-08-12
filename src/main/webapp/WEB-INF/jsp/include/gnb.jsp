@@ -52,6 +52,7 @@ function closeNav() {
   //document.getElementById("img-wrapper").style.width = "0";
 }
 </script>
+
 </c:if>
 
 <c:if test="${userType eq 'Administrator'}">

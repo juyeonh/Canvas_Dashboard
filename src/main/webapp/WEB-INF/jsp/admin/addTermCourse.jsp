@@ -15,7 +15,7 @@
 		  	<div class="d-flex align-items-center mt-1">
 			  	<span class="col-4" style="font-weight:bold;">Course</span>
 			  	<div class="col-7" style="padding:0;">
-			  		<select name="courseId" class="form-control">
+			  		<select name="courseId" id="courseId" class="form-control">
 					    <option value="">Select a course</option>
 					    <c:forEach var="dv" items="${depViewList}">
 						    <optgroup label="${dv.dep.name}">
@@ -30,17 +30,21 @@
 		    
 		    <div class="d-flex align-items-center mt-1">
 			  	<span class="col-4" style="font-weight:bold;">Instructor</span>
-			  	<div class="col-7" style="padding:0;">
-			  		<select name="instructorId" class="form-control">
+			  	<div class="col-7" style="padding:0;" id="instId">
+			  		<select name="instructorId" id="instructorId" class="form-control">
 					    <option value="">Select Instructor</option>
 					    
-					    <c:forEach var="dv" items="${depViewList}">
+					    <%-- <c:forEach var="inst" items="${instList}">
+					    	<option value="${inst.id}">${inst.name}</option>
+					    </c:forEach> --%>
+					    
+					    <%-- <c:forEach var="dv" items="${depViewList}">
 						    <optgroup label="${dv.dep.name}">
 							    <c:forEach var="inst" items="${dv.instructorList}">
 							    	<option value="${inst.id}">${inst.name}</option>
 							    </c:forEach>
 						    </optgroup>
-					    </c:forEach>
+					    </c:forEach> --%>
 				    </select>
 			    </div>
 		    </div>
@@ -104,10 +108,66 @@ function checkInputNum(){	// regex: onKeyup="this.value=this.value.replace(/[^0-
 }
 
 $(document).ready(function(){
+	$('select').selectize({
+        sortField: 'text'
+    });
+	
 	$('#courseId').on('change', function(){
     	var courseId = $(this).val(); 
     	
+    	$.ajax({
+			// request
+			type: "POST"
+			,url: "/course/get_instructors"
+			,data: {"courseId":courseId}
+			
+			// response
+			,success: function(data){
+				if(data.result == "success"){
+					var instList = data.data;		// instructorList
+					var select = document.getElementById('instructorId');
+					
+					for(var i = 0; i < instList.length; i++){
+						/* var opt = document.createElement('option');
+				    	opt.value = instList[i].id;
+					    opt.innerHTML = instList[i].name;
+					    select.appendChild(opt); */
+						
+					    //$('#instId .selectize-control .selectize-input .selectize-dropdown .selectize-dropdown-content').append("<option value='"+ instList[i].id +"'>" + instList[i].name + "</option>");
+					    //$('#instId').find(".selectize-control").find('.selectize-dropdown').find('.selectize-dropdown-content').append("<option value='"+ instList[i].id +"'>" + instList[i].name + "</option>");
+					    //$('#instructorId').selectize.addOption({value:13,text:'foo'});
+					    //$('#instructorId').selectize.refreshOptions();
+					    
+					    
+					    /* var opt = document.createElement("option"); // 요소 생성
+						opt.innerText = instList[i].name; // 옵션 이름 지정
+						opt.value = instList[i].id; // 옵션 value 지정
+						select.appendChild(opt); */
+						
+						if($('#instructorId').selectize) {
+							$('#instructorId').selectize.addOption({value:1, text: '1'});
+					    }
+					}
+					
+					/* for(var i = 0; i < instList.length; i++){
+						var opt = document.createElement("option");
+					    opt.text = instList[i].name;
+					    opt.value = instList[i].id;
+					    select.options.add(opt);
+					} */
+				    
+					/* let select = document.querySelector("instructorId");
+				    $(select).append("<option value='"+ instList[i].id +"'>" + instList[i].name + "</option>"); */
+				} else{
+					alert("Getting instructor information failed. Please retry again.");
+				}
+			}
+			,error: function(e){
+				alert("Error: " + e);
+			}
+		});
     });
+	
 	
 	/* $("input[name=date]").datepicker({
         dayNamesMin:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
@@ -115,9 +175,7 @@ $(document).ready(function(){
        	minDate:0
     }); */
 	
-	$('select').selectize({
-        sortField: 'text'
-    });
+	
 	
 	$('#termCourseForm').on('submit',function(e){
 		e.preventDefault();

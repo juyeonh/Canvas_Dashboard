@@ -73,6 +73,15 @@
         	`name` = #{name}
     </select>
     
+    <select id="selectDepartmentIdByCourseId" parameterType="int" resultType="int">
+    	SELECT
+            `departmentId`
+        FROM
+            `course`
+        WHERE
+        	`id` = #{id}
+    </select>
+    
     <select id="selectCourseListByDepartmentId" parameterType="int" resultType="com.dashboard.course.model.Course">
     	SELECT
             `id`
